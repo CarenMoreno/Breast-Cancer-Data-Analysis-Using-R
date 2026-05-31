@@ -21,3 +21,23 @@ breast-cancer-gene-expression-analysis/
 ├── .gitignore
 └── activity1_analysis.html
 ```
+
+<p align="center">
+<pre>
+TargetScan
+     ↓
+Target Gene Identification
+     ↓
+Venn Diagram Analysis
+     ↓
+Common Target Genes
+     ↓
+UniProt Functional Annotation
+     ↓
+GO Biological Process
+KEGG Pathways
+Reactome
+     ↓
+Biological Interpretation
+</pre>
+</p>
