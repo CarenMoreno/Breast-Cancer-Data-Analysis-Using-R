@@ -41,3 +41,20 @@ Reactome
 Biological Interpretation
 </pre>
 </p>
+
+graph TD
+    A[TargetScan] --> B[Target Gene Identification]
+    B --> C[Venn Diagram Analysis]
+    C --> D[Common Target Genes]
+    D --> E[UniProt Functional Annotation]
+    E --> F[GO Biological Process<br>KEGG Pathways<br>Reactome]
+    F --> G[Biological Interpretation]
+
+    %% Estilos para que se vea limpio
+    style A fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style B fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style C fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style D fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style E fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style F fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style G fill:#f9f9f9,stroke:#333,stroke-width:1px
