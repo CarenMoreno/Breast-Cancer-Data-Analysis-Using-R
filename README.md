@@ -27,4 +27,4 @@ breast-cancer-gene-expression-analysis/
 
 ## Histograms 
 
-## 
+## Heatmaps
