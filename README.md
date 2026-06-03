@@ -3,7 +3,7 @@ Visualization of biological data corresponding to the gene expression of breast 
 
 # Structure 
 ```text
-breast-cancer-gene-expression-analysis/
+breast-cancer-data-analysis-using-R/
 │
 ├── data/
 │   ├── data_complete.csv
