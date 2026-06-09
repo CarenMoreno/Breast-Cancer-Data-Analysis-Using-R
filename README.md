@@ -6,7 +6,7 @@ Visualization of biological data corresponding to the gene expression of breast 
 breast-cancer-data-analysis-using-R/
 │
 ├── data/
-│   ├── data_complete.csv
+│   ├── MUBioinfo_dataset_genes_oct2025.csv
 │   └── labels.csv
 │
 ├── scripts/
@@ -20,6 +20,19 @@ breast-cancer-data-analysis-using-R/
 ├── README.md
 ├── .gitignore
 └── activity1_analysis.html
+
+bioinformatica-master-UNIR/
+│
+├── README.md                          ← descripción del repo
+│
+├── tema3-visualizacion-datos/
+│   ├── actividad1/
+│   │   ├── actividad1_bioinformatica.Rmd
+│   │   ├── actividad1_bioinformatica.html
+│   │   └── MUBioinfo_dataset_genes_oct2025.csv
+│   └── README.md
+│
+└── .gitignore
 ```
 # Results 
 
