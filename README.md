@@ -38,7 +38,7 @@ The main objective is to apply biological data visualization techniques to a rea
 
 ## 📊 Analysis Overview
 
-### Exercise 1 — Gene Expression Box Plots by Treatment
+### Exercise 1 - Gene Expression Box Plots by Treatment
 
 Comparison of the expression distribution of **10 clinically relevant breast cancer genes** between treatment groups (drug vs. placebo) using stratified box plots.
 
@@ -51,7 +51,7 @@ Comparison of the expression distribution of **10 clinically relevant breast can
 
 ---
 
-### Exercise 2 — Biochemical Parameter Histograms
+### Exercise 2 - Biochemical Parameter Histograms
 
 Distribution analysis of **16 biochemical variables** across the full patient cohort using histograms with kernel density estimation.
 
@@ -63,7 +63,7 @@ Distribution analysis of **16 biochemical variables** across the full patient co
 
 ---
 
-### Exercise 3 — Gene Expression Heatmap
+### Exercise 3 - Gene Expression Heatmap
 
 Global visualization of all **AQ gene expression variables** across all 65 patients using hierarchical clustering to identify patient subgroups and co-expression patterns.
 
@@ -167,7 +167,7 @@ I am a **Master's student in Bioinformatics at UNIR**, with a strong interest in
 
 This repository is part of my growing bioinformatics portfolio. I am actively building skills in R, Python, and bioinformatics pipelines.
 
-📫 **Contact:** [(https://www.linkedin.com/in/carenmoreno-biotech/)]
+📫 **Contact:** [https://www.linkedin.com/in/carenmoreno-biotech/]
 
 ---
 
