@@ -62,7 +62,6 @@ Distribution analysis of **16 biochemical variables** across the full patient co
 <p align="center">
   <img src="images/Histograms.png" alt="Histograms" />
 </p>
-![Histograms 1](images/Histograms1.png)
 
 > **Key findings:** Most biochemical variables show **non-normal distributions**. Variables such as CRP (median = 4.8, max = 194.2 mg/L), triglycerides (median = 129, max = 469 mg/dL), and CPK display strong **positive skewness**, with long right tails indicating the presence of patients with markedly elevated inflammatory or metabolic markers. Lipid parameters (cholesterol, HDL, LDL) and transferrin are more symmetrically distributed. IgE shows a highly asymmetric distribution typical of atopic responses. These patterns suggest that **non-parametric statistical tests** and log-transformations would be appropriate for further inferential analyses.
 
@@ -72,7 +71,9 @@ Distribution analysis of **16 biochemical variables** across the full patient co
 
 Global visualization of all **AQ gene expression variables** across all 65 patients using hierarchical clustering to identify patient subgroups and co-expression patterns.
 
-![Heatmap](images/Heatmap.png)
+<p align="center">
+  <img src="images/Heatmap.png" alt="Heatmap" />
+</p>
 
 > **Key findings:** Hierarchical clustering (`cutree_cols = 2`) reveals **two major patient subgroups** with distinct expression profiles. One cluster shows consistently higher expression across multiple genes, while the other shows lower or more heterogeneous values. Patients with metastatic disease show a tendency to concentrate in one of the clusters, though the separation is not complete, reflecting biological complexity. Three gene clusters (`cutree_rows = 3`) are identified: genes with low basal expression, constitutively expressed genes (housekeeping-like), and genes with high inter-patient variability likely driven by individual tumor molecular profiles. This exploratory analysis sets the ground for dimensionality reduction approaches (e.g., PCA, UMAP) in future analyses.
 
