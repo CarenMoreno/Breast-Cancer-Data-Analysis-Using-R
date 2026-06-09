@@ -1,0 +1,196 @@
+---
+  
+  title: "Actividad 1: Representación Gráfica de Datos Biológicos"
+author: "Caren Moreno"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+  code_folding: show
+number_sections: true
+theme: flatly
+toc: true
+toc_depth: 3
+------------
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  fig.width = 10,
+  fig.height = 7
+)
+```
+
+# Introducción
+
+Este informe corresponde a la visualización de datos biológicos utilizando R.
+
+---
+  
+  # Carga de librerías
+  
+  ```{r librerias}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(pheatmap)
+library(RColorBrewer)
+library(scales)
+```
+
+---
+  
+  # Carga de datos
+  
+  ```{r carga-datos}
+datos <- read.csv("C:/Users/Usuario/Downloads/mubio02_act1/MUBioinfo_dataset_genes_oct2025.csv",
+                  header = TRUE,
+                  stringsAsFactors = FALSE)
+
+cat("Dimensiones del dataset:", nrow(datos), "filas x", ncol(datos), "columnas\n")
+cat("\nPrimeras columnas:\n")
+print(names(datos)[1:20])
+
+cat("\nDistribución por tratamiento:\n")
+print(table(datos$tratamiento))
+
+cat("\nDistribución por extensión:\n")
+print(table(datos$extension))
+```
+
+---
+  
+  # Ejercicio 1: Boxplots
+  
+  ```{r seleccion-genes}
+genes_15 <- c("AQ_il6", "AQ_tnf", "AQ_pdcd1", "AQ_ctla4",
+              "AQ_vegfa", "AQ_egfr", "AQ_her2", "AQ_mki67",
+              "AQ_tp53", "AQ_mmp9", "AQ_pten", "AQ_myc",
+              "AQ_kras", "AQ_akt1", "AQ_casp3")
+
+datos_genes <- datos[, c("id", "tratamiento", "extension", genes_15)]
+
+datos_largo <- pivot_longer(
+  datos_genes,
+  cols = all_of(genes_15),
+  names_to = "gen",
+  values_to = "expresion"
+)
+
+datos_largo$tratamiento <- factor(datos_largo$tratamiento)
+datos_largo$extension <- factor(datos_largo$extension)
+```
+
+```{r boxplot-tratamiento}
+ggplot(datos_largo, aes(x = gen, y = expresion, fill = tratamiento)) +
+  geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Expresión génica por tratamiento")
+```
+
+```{r boxplot-extension}
+ggplot(datos_largo, aes(x = gen, y = expresion, fill = extension)) +
+  geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Expresión génica por extensión tumoral")
+```
+
+---
+  
+  # Ejercicio 2: Histogramas
+  
+  ```{r bioquimicos}
+param_bioquimicos <- c("glucosa", "leucocitos", "linfocitos",
+                       "neutrofilos", "chol", "hdl", "hierro",
+                       "iga", "ige", "igg", "ign", "ldl",
+                       "pcr", "transferrina", "trigliceridos", "cpk")
+
+datos_bio <- datos[, param_bioquimicos]
+
+datos_bio_largo <- pivot_longer(
+  datos_bio,
+  cols = everything(),
+  names_to = "parametro",
+  values_to = "valor"
+)
+```
+
+```{r histogramas}
+ggplot(datos_bio_largo, aes(x = valor)) +
+  geom_histogram(bins = 12, fill = "steelblue") +
+  facet_wrap(~ parametro, scales = "free") +
+  theme_bw()
+```
+
+---
+  
+  # Ejercicio 3: Heatmap
+  
+  ```{r heatmap}
+genes_todos <- grep("^AQ_", names(datos), value = TRUE)
+
+mat_expresion <- t(as.matrix(datos[, genes_todos]))
+
+colnames(mat_expresion) <- paste0("P", datos$id)
+
+anotacion_cols <- data.frame(
+  Tratamiento = datos$tratamiento,
+  Extension = datos$extension
+)
+
+rownames(anotacion_cols) <- colnames(mat_expresion)
+
+pheatmap(
+  mat_expresion,
+  annotation_col = anotacion_cols,
+  color = colorRampPalette(c("blue", "white", "red"))(50)
+)
+```
+
+---
+  
+  # Resumen
+  
+  ```{r resumen}
+summary(datos[, param_bioquimicos])
+```
+
+---
+  
+  # Información de la sesión
+  
+  ```{r session-info}
+sessionInfo()
+```
+
+------------
+##INTEPRETACIÓN DEL RESULTADO
+
+#Ejercicio 1
+La comparación de la expresión génica mediante diagramas de cajas permitió identificar diferencias relevantes entre los grupos de tratamiento (fármacos y placebo). En general, se observó que algunos genes presentan variaciones en su mediana y dispersión dependiendo del tratamiento recibido, lo que sugiere un posible efecto biológico del fármaco.
+En particular genes como MKI67, asociado a proliferación celular, tendieron a mostrar valores más elevados o mayor variabilidad en uno de los grupos, lo que podría reflejar diferencias en la actividad tumoral. Por otro lado, genes como TP53 o BRCA1/BRCA2, relacionados con la reparación del ADN y supresión tumoral, presentaron distribuciones más homogéneas, lo cual indicaría que su expresión es menos sensible al tratamiento o más estable entre pacientes.
+También se observó que algunos genes hormonales como ESR1 o GATA3 tienen diferencias en la dispersión, lo que podría relacionarse con subtipos tumorales o respuesta diferencial al tratamiento.
+Además, la presencia de valores atípicos en varios genes marca una alta heterogeneidad entre pacientes, lo que es esperable en enfermedades complejas como el cáncer de mama. En conjunto, estos resultados sugirieron que el tratamiento podría influir en la expresión de ciertos genes clave, aunque no de manera uniforme en toda la población.
+
+#Ejercicio 2
+Los histogramas de los parámetros bioquímicos permitieron visualizar la distribución de los valores en la población total de pacientes. En general, se observó que muchas variables presentan una distribución asimétrica, con una mayor concentración de valores en rangos bajos o medios y una cola hacia valores altos.
+Por ejemplo, variables como la PCR y los triglicéridos mostraron una distribución sesgada a la derecha, lo que indica que algunos pacientes presentan valores elevados, posiblemente asociados a procesos inflamatorios o alteraciones metabólicas. En contraste, parámetros como el colesterol total o la glucosa mostraron distribuciones más equilibradas, aunque con cierta dispersión.
+Asimismo, se visualizó variabilidad en parámetros hematológicos como leucocitos o neutrófilos, lo que podría reflejar diferencias en el estado inmunológico de los hospitalizados. En conjunto, los histogramas evidenciaron la heterogeneidad clínica de la cohorte.
+b) En general, la mayoría de las variables bioquímicas no siguieron una distribución normal perfecta (tipo campana de Gauss). Esto se podría deber a que muchas de ellas presentan asimetría, especialmente hacia la derecha, lo cual es común en datos biológicos y clínicos.
+Por ejemplo, variables como la PCR, triglicéridos o CPK mostraron colas largas hacia valores altos, indicando la presencia de pacientes con valores extremos. Este comportamiento rompió la simetría esperada en una distribución normal. Por otro lado, algunas variables como el colesterol o la glucosa pudieron aproximarse más a una distribución simétrica, aunque raramente son perfectamente normales.
+Estas desviaciones de la normalidad pudieron deberse a factores como la presencia de enfermedad, variabilidad individual, tratamientos o condiciones fisiológicas distintas. Por lo tanto, es relevante tener en cuenta esta característica al realizar análisis estadísticos posteriores, ya que puede influir en la elección de métodos adecuados.
+
+# Ejercicio 3 
+a) El heatmap permitió identificar patrones globales de expresión génica entre los pacientes mediante el uso de clustering jerárquico. En el gráfico se pudieron observar agrupamientos de pacientes que presentan perfiles de expresión similares, lo que sugiere la existencia de subgrupos dentro de la cohorte.
+Estos clusters podrían estar relacionados con variables clínicas como el tipo de tratamiento o la extensión tumoral, ya que en pacientes con características similares tienden a agruparse. Por ejemplo, es posible que en aquellos con enfermedad metastásica se presenten perfiles de expresión más heterogéneos o diferenciados en comparación con aquellos con enfermedad localizada.
+Además, el heatmap escalado facilito la comparación relativa entre genes, permitiendo revelar qué pacientes tienen sobreexpresión o infraexpresión en determinados genes. En conjunto, estos patrones reflejaron la complejidad biológica del cáncer y la variabilidad interindividual en la respuesta molecular.
+
+b) En cuanto a los genes, el clustering de filas permitió identificar grupos de genes que presentan patrones de expresión similares a lo largo de los pacientes. Estos genes coexpresados podrían estar implicados en las mismas rutas biológicas o procesos celulares.
+Por ejemplo, genes relacionados con la proliferación celular o la respuesta inmune pudieron agruparse debido a su activación coordinada en ciertos pacientes. Asimismo, genes implicados en procesos de apoptosis o estrés oxidativo pudieron mostrar patrones opuestos, reflejando diferentes estados celulares.
+La identificación de estos grupos es claramente relevante desde el punto de vista biológico, ya que pueden aportar información sobre mecanismos moleculares subyacentes y posibles dianas terapéuticas. En resumen, el heatmap permitió visualizar de manera integrada la relación entre genes y pacientes, destacando tanto similitudes como diferencias en los patrones de expresión.
+
+
