@@ -46,6 +46,9 @@ Comparison of the expression distribution of **10 clinically relevant breast can
 `ESR1` · `HER2` · `BRCA1` · `BRCA2` · `MKI67` · `GATA3` · `FOXA1` · `CCND1` · `CDH1` · `TP53`
 
 ![Boxplots](images/Boxplots.png)
+<p align="center">
+  <img src="images/Boxplots.png" alt="Boxplots" />
+</p>
 
 > **Key findings:** Gene expression distributions are broadly similar between treatment groups, though the placebo group tends to show greater dispersion in several genes. Proliferation-related genes (MKI67, CCND1) and luminal markers (ESR1, GATA3, FOXA1) show modest differences between groups, consistent with the biological heterogeneity expected in a breast cancer cohort. Outliers in TP53, BRCA1, and BRCA2 likely reflect individual molecular profiles rather than a treatment effect.
 
