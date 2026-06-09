@@ -45,7 +45,6 @@ Comparison of the expression distribution of **10 clinically relevant breast can
 **Genes analyzed:**
 `ESR1` · `HER2` · `BRCA1` · `BRCA2` · `MKI67` · `GATA3` · `FOXA1` · `CCND1` · `CDH1` · `TP53`
 
-![Boxplots](images/Boxplots.png)
 <p align="center">
   <img src="images/Boxplots.png" alt="Boxplots" />
 </p>
@@ -60,7 +59,9 @@ Distribution analysis of **16 biochemical variables** across the full patient co
 
 **Parameters:** Glucose · Leukocytes · Lymphocytes · Neutrophils · Cholesterol · HDL · Iron · IgA · IgE · IgG · IgN · LDL · CRP · Transferrin · Triglycerides · CPK
 
-![Histograms](images/Histograms.png)
+<p align="center">
+  <img src="images/Histograms.png" alt="Histograms" />
+</p>
 ![Histograms 1](images/Histograms1.png)
 
 > **Key findings:** Most biochemical variables show **non-normal distributions**. Variables such as CRP (median = 4.8, max = 194.2 mg/L), triglycerides (median = 129, max = 469 mg/dL), and CPK display strong **positive skewness**, with long right tails indicating the presence of patients with markedly elevated inflammatory or metabolic markers. Lipid parameters (cholesterol, HDL, LDL) and transferrin are more symmetrically distributed. IgE shows a highly asymmetric distribution typical of atopic responses. These patterns suggest that **non-parametric statistical tests** and log-transformations would be appropriate for further inferential analyses.
