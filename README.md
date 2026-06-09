@@ -167,7 +167,7 @@ I am a **Master's student in Bioinformatics at UNIR**, with a strong interest in
 
 This repository is part of my growing bioinformatics portfolio. I am actively building skills in R, Python, and bioinformatics pipelines.
 
-📫 **Contact:** [Add your email or LinkedIn here]
+📫 **Contact:** [(https://www.linkedin.com/in/carenmoreno-biotech/)]
 
 ---
 
