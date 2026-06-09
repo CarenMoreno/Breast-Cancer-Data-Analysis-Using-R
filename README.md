@@ -173,7 +173,7 @@ I am a **Master's student in Bioinformatics at UNIR**, with a strong interest in
 
 This repository is part of my growing bioinformatics portfolio. I am actively building skills in R, Python, and bioinformatics pipelines.
 
-📫 **Contacto:** [![LinkedIn](https://shields.io)](https://www.linkedin.com/in/carenmoreno-biotech/)
+📫 **Contacto:** [LinkedIn](https://www.linkedin.com/in/carenmoreno-biotech/)
 
 ---
 
